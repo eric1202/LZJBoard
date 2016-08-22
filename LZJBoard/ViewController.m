@@ -11,6 +11,7 @@
 #import "UIView+Common.h"
 #import <iflyMSC/iflyMSC.h>
 #import "IATConfig.h"
+#import "ISRDataHelper.h"
 #define XFKEY @"57b6c6d8"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource,IFlyRecognizerViewDelegate>
@@ -20,6 +21,8 @@
 @property (nonatomic, strong) IFlySpeechRecognizer *iFlySpeechRecognizer;
 @property (nonatomic, strong) IFlyRecognizerView  *iflyRecognizerView;
 @property (nonatomic, strong) IFlyDataUploader *uploader;
+
+@property (nonatomic, strong) NSMutableArray *dataSource;
 @end
 
 @implementation ViewController
@@ -32,6 +35,7 @@
     self.tableView.estimatedRowHeight = 44;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView registerNib:[UINib nibWithNibName:@"MessageBoardCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MessageBoardCell"];
+    self.dataSource = [NSMutableArray array];
     
     [self.view addSubview:self.chatBtn];
     NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@",XFKEY];
@@ -53,11 +57,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    return _dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MessageBoardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MessageBoardCell"];
+    cell.contentLbl.text = self.dataSource[indexPath.row];
     return cell;
 }
 
@@ -116,9 +121,9 @@
         [_iflyRecognizerView setParameter:instance.language forKey:[IFlySpeechConstant LANGUAGE]];
     }
     //设置是否返回标点符号
-    [_iflyRecognizerView setParameter:instance.dot forKey:[IFlySpeechConstant ASR_PTT]];
+//    [_iflyRecognizerView setParameter:instance.dot forKey:[IFlySpeechConstant ASR_PTT]];
     
-    _uploader = [[IFlyDataUploader alloc]init];
+//    _uploader = [[IFlyDataUploader alloc]init];
     
     
 }
@@ -129,13 +134,23 @@
 
 -(void)onResult:(NSArray *)resultArray isLast:(BOOL)isLast{
     
-    NSMutableString *result = [[NSMutableString alloc] init];
-    NSDictionary *dic = [resultArray objectAtIndex:0];
+    NSLog(@"听写结果(json)：%@",  resultArray);
     
-    for (NSString *key in dic) {
-        [result appendFormat:@"%@",key];
+    NSMutableString *resultString = [[NSMutableString alloc] init];
+    if(resultArray){
+        NSDictionary *dic = resultArray[0];
+        for (NSString *key in dic) {
+            [resultString appendFormat:@"%@",key];
+        }
+        
+        NSString * resultFromJson =  [ISRDataHelper stringFromJson:resultString];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.dataSource addObject:resultFromJson?resultFromJson:@"啥呀"];
+            [self.tableView reloadData];
+        });
+
     }
-    NSLog(@"on results : %@\n last content:%@",resultArray,result);
+
 }
 
 @end

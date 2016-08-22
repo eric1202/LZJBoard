@@ -13,14 +13,13 @@
 #import "IATConfig.h"
 #import "ISRDataHelper.h"
 #import "User.h"
-
 #import <AVOSCloud/AVOSCloud.h>
 #define XFKEY @"57b6c6d8"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource,IFlyRecognizerViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIButton *chatBtn;
-
+@property (nonatomic, strong) dispatch_source_t timer;
 @property (nonatomic, strong) IFlySpeechRecognizer *iFlySpeechRecognizer;
 @property (nonatomic, strong) IFlyRecognizerView  *iflyRecognizerView;
 @property (nonatomic, strong) IFlyDataUploader *uploader;
@@ -45,22 +44,68 @@
     [IFlySpeechUtility createUtility:initString];
     
     [self getNetworkData];
+    
+    [self refreshContent];
 }
 
 #pragma mark - network
 - (void)getNetworkData{
     AVQuery *aq = [[AVQuery alloc]initWithClassName:@"board"];
     [aq addDescendingOrder:@"createdAt"];
+
+    aq.skip = _dataSource.count;
+    aq.limit = 20;
     [aq findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error || objects.count == 0) {
+            return ;
+        }
+        
         [self.dataSource addObjectsFromArray:objects];
         
-        [self.tableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.tableView reloadData];
+        });
     }];
 }
 
-#pragma mark - table view 
+/**
+ *  轮询获取内容
+ */
+- (void)refreshContent{
+    __block int count = 0;
+    
+    // 获得队列
+    dispatch_queue_t queue = dispatch_get_main_queue();
+    
+    // 创建一个定时器(dispatch_source_t本质还是个OC对象)
+    self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    
+    // 设置定时器的各种属性（几时开始任务，每隔多长时间执行一次）
+    // GCD的时间参数，一般是纳秒（1秒 == 10的9次方纳秒）
+    // 何时开始执行第一个任务
+    // dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC) 比当前时间晚3秒
+    dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
+    uint64_t interval = (uint64_t)(5.0 * NSEC_PER_SEC);
+    dispatch_source_set_timer(self.timer, start, interval, 0);
+    
+    // 设置回调
+    dispatch_source_set_event_handler(self.timer, ^{
+        NSLog(@"------------%@", [NSThread currentThread]);
+        count++;
+        [self getNetworkData];
 
+        if (count == 40000) {
+            // 取消定时器
+            dispatch_cancel(self.timer);
+            self.timer = nil;
+        }
+    });
+    
+    // 启动定时器
+    dispatch_resume(self.timer);}
 
+#pragma mark - table view
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -76,6 +121,7 @@
         AVObject *object = self.dataSource[indexPath.row];
         cell.contentLbl.text = [object objectForKey:@"content"];
         cell.nameLbl.text = [object objectForKey:@"fromUserName"];
+        
     }
     return cell;
 }
@@ -111,7 +157,9 @@
     _iflyRecognizerView = [[IFlyRecognizerView alloc] initWithCenter:self.view.center];
     _iflyRecognizerView.delegate = self;
     [_iflyRecognizerView setParameter:@"iat" forKey:[IFlySpeechConstant IFLY_DOMAIN]];
-    [_iflyRecognizerView setParameter:@"asrview.pcm " forKey:[IFlySpeechConstant ASR_AUDIO_PATH]];
+    
+    //不保存录音文件
+//    [_iflyRecognizerView setParameter:@"asrview.pcm " forKey:[IFlySpeechConstant ASR_AUDIO_PATH]];
     
     IATConfig *instance = [IATConfig sharedInstance];
     //设置最长录音时间
@@ -167,6 +215,7 @@
                 [content setObject:resultFromJson forKey:@"content"];
                 [self.dataSource addObject:content];
                 [self.tableView reloadData];
+                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.dataSource.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
                 [content saveInBackground];
             });
 

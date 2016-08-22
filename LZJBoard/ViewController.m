@@ -13,12 +13,14 @@
 #import "IATConfig.h"
 #import "ISRDataHelper.h"
 #import "User.h"
+#import "PictureRecordCreateController.h"
 #import <AVOSCloud/AVOSCloud.h>
 #define XFKEY @"57b6c6d8"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,IFlyRecognizerViewDelegate>
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,IFlyRecognizerViewDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIButton *chatBtn;
+@property (strong, nonatomic) UIButton *pictureBtn;
 @property (nonatomic, strong) dispatch_source_t timer;
 @property (nonatomic, strong) IFlySpeechRecognizer *iFlySpeechRecognizer;
 @property (nonatomic, strong) IFlyRecognizerView  *iflyRecognizerView;
@@ -52,9 +54,9 @@
 - (void)getNetworkData{
     AVQuery *aq = [[AVQuery alloc]initWithClassName:@"board"];
     [aq addDescendingOrder:@"createdAt"];
-
+    
     aq.skip = _dataSource.count;
-    aq.limit = 20;
+    aq.limit = aq.skip == 0 ?1000 :20;
     [aq findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error || objects.count == 0) {
             return ;
@@ -94,7 +96,7 @@
         NSLog(@"------------%@", [NSThread currentThread]);
         count++;
         [self getNetworkData];
-
+        
         if (count == 40000) {
             // 取消定时器
             dispatch_cancel(self.timer);
@@ -126,12 +128,21 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    cell.alpha = 0.2;
+    [UIView animateWithDuration:0.3
+                          delay:0
+                        options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionCurveEaseIn)
+                     animations:^{
+                         cell.alpha = 1;
+                     }                completion:nil];
+}
 
-#pragma mark - chat button
--(UIButton *)chatBtn{
+#pragma mark - UI
+- (UIButton *)chatBtn{
     if (_chatBtn == nil) {
         _chatBtn = [[UIButton alloc]initWithFrame:CGRectMake((self.view.selfW - 100)/2.0f, self.view.selfH - 50, 100, 30)];
-        [_chatBtn setTitle:@"开始记录" forState:(UIControlStateNormal)];
+        [_chatBtn setTitle:@"语音记录" forState:(UIControlStateNormal)];
         [_chatBtn setTitleColor:[UIColor redColor] forState:(UIControlStateNormal)];
         _chatBtn.backgroundColor = [UIColor colorWithHexString:@"f0f2f2"];
         
@@ -140,6 +151,36 @@
     return _chatBtn;
 }
 
+
+/**
+ *  记录图片
+ *
+ *  @param btn
+ */
+- (IBAction)pictureRecord:(id)sender {
+    UIImagePickerController *pk = [[UIImagePickerController alloc]init];
+    pk.delegate = self;
+    [self presentViewController:pk animated:YES completion:nil];
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    PictureRecordCreateController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PictureRecordCreateController"];
+    vc.image = info[@"UIImagePickerControllerOriginalImage"];
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - chat function
+/**
+ *  记录语音
+ *
+ *  @param btn
+ */
 - (void)record:(UIButton *)btn{
     if (!_iFlySpeechRecognizer) {
         
@@ -159,7 +200,7 @@
     [_iflyRecognizerView setParameter:@"iat" forKey:[IFlySpeechConstant IFLY_DOMAIN]];
     
     //不保存录音文件
-//    [_iflyRecognizerView setParameter:@"asrview.pcm " forKey:[IFlySpeechConstant ASR_AUDIO_PATH]];
+    //    [_iflyRecognizerView setParameter:@"asrview.pcm " forKey:[IFlySpeechConstant ASR_AUDIO_PATH]];
     
     IATConfig *instance = [IATConfig sharedInstance];
     //设置最长录音时间
@@ -185,7 +226,7 @@
     //设置是否返回标点符号
     [_iflyRecognizerView setParameter:instance.dot forKey:[IFlySpeechConstant ASR_PTT]];
     
-//    _uploader = [[IFlyDataUploader alloc]init];
+    //    _uploader = [[IFlyDataUploader alloc]init];
     
     
 }
@@ -208,7 +249,7 @@
         NSString *resultFromJson = [ISRDataHelper stringFromJson:resultString];
         if (resultFromJson) {
             dispatch_async(dispatch_get_main_queue(), ^{
-
+                
                 AVObject *content = [AVObject objectWithClassName:@"board"];
                 
                 [content setObject:[User currentUser].name forKey:@"fromUserName"];
@@ -218,11 +259,11 @@
                 [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.dataSource.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
                 [content saveInBackground];
             });
-
+            
         }
-
+        
     }
-
+    
 }
 
 @end

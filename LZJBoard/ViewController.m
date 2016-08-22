@@ -12,6 +12,8 @@
 #import <iflyMSC/iflyMSC.h>
 #import "IATConfig.h"
 #import "ISRDataHelper.h"
+
+#import <AVOSCloud/AVOSCloud.h>
 #define XFKEY @"57b6c6d8"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource,IFlyRecognizerViewDelegate>
@@ -41,11 +43,18 @@
     NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@",XFKEY];
     [IFlySpeechUtility createUtility:initString];
     
+    [self getNetworkData];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - network
+- (void)getNetworkData{
+    AVQuery *aq = [[AVQuery alloc]initWithClassName:@"board"];
+    [aq addDescendingOrder:@"createdAt"];
+    [aq findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [self.dataSource addObjectsFromArray:objects];
+        
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark - table view 
@@ -62,7 +71,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MessageBoardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MessageBoardCell"];
-    cell.contentLbl.text = self.dataSource[indexPath.row];
+    if ([self.dataSource[indexPath.row] isKindOfClass:[AVObject class]]) {
+        AVObject *object = self.dataSource[indexPath.row];
+        cell.contentLbl.text = [object objectForKey:@"content"];
+
+    }
     return cell;
 }
 
@@ -121,7 +134,7 @@
         [_iflyRecognizerView setParameter:instance.language forKey:[IFlySpeechConstant LANGUAGE]];
     }
     //设置是否返回标点符号
-//    [_iflyRecognizerView setParameter:instance.dot forKey:[IFlySpeechConstant ASR_PTT]];
+    [_iflyRecognizerView setParameter:instance.dot forKey:[IFlySpeechConstant ASR_PTT]];
     
 //    _uploader = [[IFlyDataUploader alloc]init];
     
@@ -143,11 +156,19 @@
             [resultString appendFormat:@"%@",key];
         }
         
-        NSString * resultFromJson =  [ISRDataHelper stringFromJson:resultString];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.dataSource addObject:resultFromJson?resultFromJson:@"啥呀"];
-            [self.tableView reloadData];
-        });
+        NSString *resultFromJson = [ISRDataHelper stringFromJson:resultString];
+        if (resultFromJson) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+
+                
+                AVObject *content = [AVObject objectWithClassName:@"board"];
+                [content setObject:resultFromJson forKey:@"content"];
+                [self.dataSource addObject:content];
+                [self.tableView reloadData];
+                [content saveInBackground];
+            });
+
+        }
 
     }
 

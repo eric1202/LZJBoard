@@ -8,6 +8,7 @@
 #define leanCloudAPPID @"Wwgbx0OMddsLAnA1FULt0ugO-gzGzoHsz"
 #define leanCloudAPPKEY @"BReICwTihyVosYSVS9WPNTN6"
 
+#import "User.h"
 #import "AppDelegate.h"
 #import <AVOSCloud/AVOSCloud.h>
 @interface AppDelegate ()
@@ -20,6 +21,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [AVOSCloud setApplicationId:leanCloudAPPID clientKey:leanCloudAPPKEY];
+    
+    if ([User currentUser].name == nil) {
+        [[User currentUser] getRandomName];
+    }
 
     return YES;
 }

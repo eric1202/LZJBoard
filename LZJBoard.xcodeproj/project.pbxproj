@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		CAE7DC771D6AA1FE00D4FC2E /* IATConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE7DC761D6AA1FE00D4FC2E /* IATConfig.m */; };
 		CAE7DC7A1D6AA6D500D4FC2E /* ISRDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE7DC791D6AA6D500D4FC2E /* ISRDataHelper.m */; };
+		CAE7DC7D1D6AD36900D4FC2E /* englishName.json in Resources */ = {isa = PBXBuildFile; fileRef = CAE7DC7C1D6AD36900D4FC2E /* englishName.json */; };
+		CAE7DC811D6AD3AB00D4FC2E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE7DC801D6AD3AB00D4FC2E /* User.m */; };
 		CAFCDCB81D6703A80086CBF5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFCDCB71D6703A80086CBF5 /* main.m */; };
 		CAFCDCBB1D6703A80086CBF5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFCDCBA1D6703A80086CBF5 /* AppDelegate.m */; };
 		CAFCDCBE1D6703A80086CBF5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFCDCBD1D6703A80086CBF5 /* ViewController.m */; };
@@ -65,6 +67,9 @@
 		CAE7DC761D6AA1FE00D4FC2E /* IATConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IATConfig.m; sourceTree = "<group>"; };
 		CAE7DC781D6AA6D500D4FC2E /* ISRDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISRDataHelper.h; sourceTree = "<group>"; };
 		CAE7DC791D6AA6D500D4FC2E /* ISRDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISRDataHelper.m; sourceTree = "<group>"; };
+		CAE7DC7C1D6AD36900D4FC2E /* englishName.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = englishName.json; sourceTree = "<group>"; };
+		CAE7DC7F1D6AD3AB00D4FC2E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		CAE7DC801D6AD3AB00D4FC2E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		CAFCDCB31D6703A80086CBF5 /* LZJBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LZJBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAFCDCB71D6703A80086CBF5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CAFCDCB91D6703A80086CBF5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -173,6 +178,23 @@
 			name = framework;
 			sourceTree = "<group>";
 		};
+		CAE7DC7B1D6AD36900D4FC2E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				CAE7DC7C1D6AD36900D4FC2E /* englishName.json */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		CAE7DC7E1D6AD39600D4FC2E /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				CAE7DC7F1D6AD3AB00D4FC2E /* User.h */,
+				CAE7DC801D6AD3AB00D4FC2E /* User.m */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
 		CAFCDCAA1D6703A70086CBF5 = {
 			isa = PBXGroup;
 			children = (
@@ -197,11 +219,13 @@
 		CAFCDCB51D6703A80086CBF5 /* LZJBoard */ = {
 			isa = PBXGroup;
 			children = (
+				CAE7DC7E1D6AD39600D4FC2E /* Modal */,
 				CAFCDCF41D6704B60086CBF5 /* LeanCloudFrameworks */,
 				CAFCDCE91D6704720086CBF5 /* Chat */,
 				CAFCDCEA1D6704720086CBF5 /* HomePage */,
 				CAFCDCEB1D6704720086CBF5 /* Util */,
 				CAFCDCFB1D67069A0086CBF5 /* View */,
+				CAE7DC7B1D6AD36900D4FC2E /* Resource */,
 				CAFCDCB91D6703A80086CBF5 /* AppDelegate.h */,
 				CAFCDCBA1D6703A80086CBF5 /* AppDelegate.m */,
 				CAFCDCBC1D6703A80086CBF5 /* ViewController.h */,
@@ -425,6 +449,7 @@
 				CAFCDD121D6709890086CBF5 /* AVOSCloud.framework in Resources */,
 				CAFCDD131D6709890086CBF5 /* AVOSCloudCrashReporting.framework in Resources */,
 				CAFCDD141D6709890086CBF5 /* AVOSCloudIM.framework in Resources */,
+				CAE7DC7D1D6AD36900D4FC2E /* englishName.json in Resources */,
 				CAFCDCC61D6703A80086CBF5 /* LaunchScreen.storyboard in Resources */,
 				CAFCDCC31D6703A80086CBF5 /* Assets.xcassets in Resources */,
 				CAFCDD011D6706CF0086CBF5 /* MessageBoardCell.xib in Resources */,
@@ -453,6 +478,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAE7DC811D6AD3AB00D4FC2E /* User.m in Sources */,
 				CAFCDCBE1D6703A80086CBF5 /* ViewController.m in Sources */,
 				CAFCDD241D670C3F0086CBF5 /* UIView+Common.m in Sources */,
 				CAE7DC771D6AA1FE00D4FC2E /* IATConfig.m in Sources */,

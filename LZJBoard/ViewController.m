@@ -12,6 +12,7 @@
 #import <iflyMSC/iflyMSC.h>
 #import "IATConfig.h"
 #import "ISRDataHelper.h"
+#import "User.h"
 
 #import <AVOSCloud/AVOSCloud.h>
 #define XFKEY @"57b6c6d8"
@@ -74,7 +75,7 @@
     if ([self.dataSource[indexPath.row] isKindOfClass:[AVObject class]]) {
         AVObject *object = self.dataSource[indexPath.row];
         cell.contentLbl.text = [object objectForKey:@"content"];
-
+        cell.nameLbl.text = [object objectForKey:@"fromUserName"];
     }
     return cell;
 }
@@ -160,8 +161,9 @@
         if (resultFromJson) {
             dispatch_async(dispatch_get_main_queue(), ^{
 
-                
                 AVObject *content = [AVObject objectWithClassName:@"board"];
+                
+                [content setObject:[User currentUser].name forKey:@"fromUserName"];
                 [content setObject:resultFromJson forKey:@"content"];
                 [self.dataSource addObject:content];
                 [self.tableView reloadData];

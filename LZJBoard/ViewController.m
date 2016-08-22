@@ -8,11 +8,13 @@
 
 #import "ViewController.h"
 #import "MessageBoardCell.h"
+#import "MessageBoardPicCellTableViewCell.h"
 #import "UIView+Common.h"
 #import <iflyMSC/iflyMSC.h>
 #import "IATConfig.h"
 #import "ISRDataHelper.h"
 #import "User.h"
+#import "UIImageView+WebCache.h"
 #import "PictureRecordCreateController.h"
 #import <AVOSCloud/AVOSCloud.h>
 #define XFKEY @"57b6c6d8"
@@ -39,6 +41,7 @@
     self.tableView.estimatedRowHeight = 44;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView registerNib:[UINib nibWithNibName:@"MessageBoardCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MessageBoardCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"MessageBoardPicCellTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MessageBoardPicCellTableViewCell"];
     self.dataSource = [NSMutableArray array];
     
     [self.view addSubview:self.chatBtn];
@@ -118,9 +121,17 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     MessageBoardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MessageBoardCell"];
     if ([self.dataSource[indexPath.row] isKindOfClass:[AVObject class]]) {
         AVObject *object = self.dataSource[indexPath.row];
+        if ([object objectForKey:@"fileURL"]) {
+            MessageBoardPicCellTableViewCell *cell1 = [tableView dequeueReusableCellWithIdentifier:@"MessageBoardPicCellTableViewCell"];
+            [cell1.imageV sd_setImageWithURL:[NSURL URLWithString:[object objectForKey:@"fileURL"]] placeholderImage:[UIImage new]];
+            cell1.contentLbl.text = [object objectForKey:@"content"];
+            cell1.nameLbl.text = [object objectForKey:@"fromUserName"];
+            return cell1;
+        }
         cell.contentLbl.text = [object objectForKey:@"content"];
         cell.nameLbl.text = [object objectForKey:@"fromUserName"];
         

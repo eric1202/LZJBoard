@@ -8,6 +8,7 @@
 
 #import "PictureRecordCreateController.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import "User.h"
 @interface PictureRecordCreateController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
@@ -36,6 +37,8 @@
             [object setObject:file.objectId forKey:@"fileObjectId"];
             [object setObject:file.url forKey:@"fileURL"];
             [object setObject:_textField.text?_textField.text:@"" forKey:@"content"];
+            [object setObject:[User currentUser].name forKey:@"fromUserName"];
+
             [object save];
             NSLog(@"send OK");
             UIAlertController *alt = [UIAlertController alertControllerWithTitle:nil message:@"操作成功" preferredStyle:(UIAlertControllerStyleAlert)];

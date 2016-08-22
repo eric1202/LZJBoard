@@ -23,8 +23,9 @@
     [AVOSCloud setApplicationId:leanCloudAPPID clientKey:leanCloudAPPKEY];
     
     if ([User currentUser].name == nil) {
-        [[User currentUser] getRandomName];
+        [[User currentUser] getRandomNameWithSex:SexMale];
     }
+    
 
     return YES;
 }

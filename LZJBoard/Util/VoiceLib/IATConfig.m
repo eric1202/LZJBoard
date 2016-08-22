@@ -38,9 +38,9 @@
 
 -(void)defaultSetting {
     _speechTimeout = @"30000";
-    _vadEos = @"3000";
-    _vadBos = @"3000";
-    _dot = @"1";
+    _vadEos = @"2000";
+    _vadBos = @"2000";
+    _dot = @"0";
     _sampleRate = @"16000";
     _language = CHINESE;
     _accent = PUTONGHUA;

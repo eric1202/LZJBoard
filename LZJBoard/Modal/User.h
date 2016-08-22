@@ -8,12 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum : NSUInteger {
+    SexMale = 1,
+    SexFemale,
+} SexType;
+
 @interface User : NSObject
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic,strong) NSNumber *sex;
 
 +(instancetype)currentUser;
 
--(void)getRandomName;
+-(void)getRandomNameWithSex:(SexType)type;
 
 @end

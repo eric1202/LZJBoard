@@ -19,7 +19,7 @@
     return instance;
 }
 
--(void)getRandomName{
+-(void)getRandomNameWithSex:(SexType)type{
     if([[NSUserDefaults standardUserDefaults]objectForKey:@"currentUserName"]){
         [User currentUser].name = [[NSUserDefaults standardUserDefaults]objectForKey:@"currentUserName"];
         return;
@@ -33,7 +33,7 @@
     NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:jdata options:NSJSONReadingMutableContainers|NSJSONReadingAllowFragments error:&error];
     
 //    NSLog(@"jsonobjec : %@\n %@",jsonObject,error);
-    NSArray *males = jsonObject[@"name1"];
+    NSArray *males = jsonObject[[NSString stringWithFormat:@"name%ld",type-1]];
     NSInteger count = males.count;
     NSInteger r = arc4random_uniform(count-1);
     

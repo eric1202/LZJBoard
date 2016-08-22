@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CAE7DC771D6AA1FE00D4FC2E /* IATConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE7DC761D6AA1FE00D4FC2E /* IATConfig.m */; };
 		CAFCDCB81D6703A80086CBF5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFCDCB71D6703A80086CBF5 /* main.m */; };
 		CAFCDCBB1D6703A80086CBF5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFCDCBA1D6703A80086CBF5 /* AppDelegate.m */; };
 		CAFCDCBE1D6703A80086CBF5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFCDCBD1D6703A80086CBF5 /* ViewController.m */; };
@@ -59,6 +60,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CAE7DC751D6AA1FE00D4FC2E /* IATConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IATConfig.h; sourceTree = "<group>"; };
+		CAE7DC761D6AA1FE00D4FC2E /* IATConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IATConfig.m; sourceTree = "<group>"; };
 		CAFCDCB31D6703A80086CBF5 /* LZJBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LZJBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAFCDCB71D6703A80086CBF5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CAFCDCB91D6703A80086CBF5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -146,7 +149,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CAFCDCAA1D6703A70086CBF5 = {
+		CAE7DC741D6AA1E500D4FC2E /* framework */ = {
 			isa = PBXGroup;
 			children = (
 				CAFCDD1F1D670A670086CBF5 /* libicucore.tbd */,
@@ -163,6 +166,14 @@
 				CAFCDD061D6709440086CBF5 /* CoreTelephony.framework */,
 				CAFCDD041D67093F0086CBF5 /* CoreLocation.framework */,
 				CAFCDD021D6709380086CBF5 /* libz.tbd */,
+			);
+			name = framework;
+			sourceTree = "<group>";
+		};
+		CAFCDCAA1D6703A70086CBF5 = {
+			isa = PBXGroup;
+			children = (
+				CAE7DC741D6AA1E500D4FC2E /* framework */,
 				CAFCDCB51D6703A80086CBF5 /* LZJBoard */,
 				CAFCDCCF1D6703A80086CBF5 /* LZJBoardTests */,
 				CAFCDCDA1D6703A80086CBF5 /* LZJBoardUITests */,
@@ -254,6 +265,8 @@
 		CAFCDCED1D6704720086CBF5 /* VoiceLib */ = {
 			isa = PBXGroup;
 			children = (
+				CAE7DC751D6AA1FE00D4FC2E /* IATConfig.h */,
+				CAE7DC761D6AA1FE00D4FC2E /* IATConfig.m */,
 				CAFCDCEE1D6704720086CBF5 /* lame.framework */,
 				CAFCDCEF1D6704720086CBF5 /* Mp3Recorder.h */,
 				CAFCDCF01D6704720086CBF5 /* Mp3Recorder.m */,
@@ -437,6 +450,7 @@
 			files = (
 				CAFCDCBE1D6703A80086CBF5 /* ViewController.m in Sources */,
 				CAFCDD241D670C3F0086CBF5 /* UIView+Common.m in Sources */,
+				CAE7DC771D6AA1FE00D4FC2E /* IATConfig.m in Sources */,
 				CAFCDCBB1D6703A80086CBF5 /* AppDelegate.m in Sources */,
 				CAFCDD271D670CE80086CBF5 /* UIColor+expanded.m in Sources */,
 				CAFCDCF31D6704720086CBF5 /* Mp3Recorder.m in Sources */,
@@ -584,6 +598,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LZJBoard/Util",
@@ -601,6 +616,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LZJBoard/Util",
@@ -679,6 +695,7 @@
 				CAFCDCE21D6703A80086CBF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CAFCDCE31D6703A80086CBF5 /* Build configuration list for PBXNativeTarget "LZJBoardTests" */ = {
 			isa = XCConfigurationList;
@@ -687,6 +704,7 @@
 				CAFCDCE51D6703A80086CBF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CAFCDCE61D6703A80086CBF5 /* Build configuration list for PBXNativeTarget "LZJBoardUITests" */ = {
 			isa = XCConfigurationList;
@@ -695,6 +713,7 @@
 				CAFCDCE81D6703A80086CBF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

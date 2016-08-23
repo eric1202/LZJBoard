@@ -17,9 +17,11 @@
 #import "UIImageView+WebCache.h"
 #import "PictureRecordCreateController.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import "DateTools.h"
+#import "BoardPeakViewController.h"
 #define XFKEY @"57b6c6d8"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,IFlyRecognizerViewDelegate,UIImagePickerControllerDelegate>
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,IFlyRecognizerViewDelegate,UIImagePickerControllerDelegate,UIViewControllerPreviewingDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIButton *chatBtn;
 @property (strong, nonatomic) UIButton *pictureBtn;
@@ -51,6 +53,9 @@
     [self getNetworkData];
     
     [self refreshContent];
+    
+    [self popPeak];
+
 }
 
 #pragma mark - network
@@ -130,6 +135,7 @@
             [cell1.imageV sd_setImageWithURL:[NSURL URLWithString:[object objectForKey:@"fileURL"]] placeholderImage:[UIImage new]];
             cell1.contentLbl.text = [object objectForKey:@"content"];
             cell1.nameLbl.text = [object objectForKey:@"fromUserName"];
+            cell1.timeLbl.text = [object.createdAt shortTimeAgoSinceNow];
             return cell1;
         }
         cell.contentLbl.text = [object objectForKey:@"content"];
@@ -275,6 +281,44 @@
         }
         
     }
+    
+}
+
+#pragma marl - pop peak
+- (void)popPeak{
+    if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
+        [self registerForPreviewingWithDelegate:self sourceView:self.view];
+    }
+}
+
+- (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)context viewControllerForLocation:(CGPoint) point
+{
+    if (CGRectContainsPoint(_tableView.frame, point)) {
+        if ([self.presentedViewController isKindOfClass:[BoardPeakViewController class]]) {
+            return nil;
+        } else {
+            point = [self.view convertPoint:point toView:_tableView];
+            NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint:point];
+            NSLog(@"%@", indexPath);
+            
+            BoardPeakViewController *displayVC = [BoardPeakViewController new];
+            displayVC.board = _dataSource[indexPath.row];
+            // peek预览窗口大小
+//            displayVC.preferredContentSize = CGSizeMake(300, 400);
+            
+            // 进入peek前不被虚化的rect
+            context.sourceRect = [self.view convertRect:[_tableView cellForRowAtIndexPath:indexPath].frame fromView:_tableView];
+            
+            return displayVC;
+        }
+    }
+    
+    return nil;
+}
+
+
+-(void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit{
+    [self showViewController:viewControllerToCommit sender:self];
     
 }
 

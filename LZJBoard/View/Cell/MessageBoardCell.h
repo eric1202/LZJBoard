@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MessageBoardCell : UITableViewCell
+#import "BaseCell.h"
+@interface MessageBoardCell : BaseCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
 
 @property (weak, nonatomic) IBOutlet UILabel *contentLbl;

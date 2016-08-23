@@ -42,6 +42,12 @@
                             </mask>
                         </variation>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Il6-ic-8hn">
+                        <rect key="frame" x="8" y="40" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="SV9-Un-mtJ" firstAttribute="top" secondItem="TtJ-Jb-wh0" secondAttribute="bottom" constant="8" id="E41-9p-O6l"/>
@@ -53,14 +59,17 @@
                     <constraint firstAttribute="trailing" secondItem="TtJ-Jb-wh0" secondAttribute="trailing" constant="8" id="im9-7o-ntc"/>
                     <constraint firstItem="Mwv-IP-h2T" firstAttribute="top" secondItem="K3A-UK-EyW" secondAttribute="top" constant="11" id="kTM-QP-vAY"/>
                     <constraint firstItem="TtJ-Jb-wh0" firstAttribute="leading" secondItem="Mwv-IP-h2T" secondAttribute="trailing" constant="15" id="m7k-Ri-kwX"/>
+                    <constraint firstItem="Il6-ic-8hn" firstAttribute="leading" secondItem="K3A-UK-EyW" secondAttribute="leading" constant="8" id="qqW-Yl-eWx"/>
+                    <constraint firstItem="Il6-ic-8hn" firstAttribute="top" secondItem="Mwv-IP-h2T" secondAttribute="bottom" constant="8" id="zXx-4P-Iw0"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="contentLbl" destination="TtJ-Jb-wh0" id="qdl-qP-e6N"/>
                 <outlet property="imageV" destination="SV9-Un-mtJ" id="g7T-2c-fcV"/>
                 <outlet property="nameLbl" destination="Mwv-IP-h2T" id="AY7-I7-q4Q"/>
+                <outlet property="timeLbl" destination="Il6-ic-8hn" id="PEK-KG-x6n"/>
             </connections>
-            <point key="canvasLocation" x="381" y="527.5"/>
+            <point key="canvasLocation" x="652" y="517.5"/>
         </tableViewCell>
     </objects>
 </document>

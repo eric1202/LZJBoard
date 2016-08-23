@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MessageBoardPicCellTableViewCell : UITableViewCell
+#import "BaseCell.h"
+@interface MessageBoardPicCellTableViewCell : BaseCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
 @property (weak, nonatomic) IBOutlet UILabel *contentLbl;
+@property (weak, nonatomic) IBOutlet UILabel *timeLbl;
 
 @end

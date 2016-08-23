@@ -38,7 +38,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = 44;
+    self.tableView.estimatedRowHeight = 60.0f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView registerNib:[UINib nibWithNibName:@"MessageBoardCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MessageBoardCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"MessageBoardPicCellTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MessageBoardPicCellTableViewCell"];
@@ -235,7 +235,7 @@
         [_iflyRecognizerView setParameter:instance.language forKey:[IFlySpeechConstant LANGUAGE]];
     }
     //设置是否返回标点符号
-    [_iflyRecognizerView setParameter:instance.dot forKey:[IFlySpeechConstant ASR_PTT]];
+//    [_iflyRecognizerView setParameter:instance.dot forKey:[IFlySpeechConstant ASR_PTT]];
     
     //    _uploader = [[IFlyDataUploader alloc]init];
     

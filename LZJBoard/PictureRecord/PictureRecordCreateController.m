@@ -27,10 +27,12 @@
     
 }
 
-- (void)send:(id)sender{
+- (void)send:(UIBarButtonItem *)sender{
+    sender.enabled = false;
     AVFile *file = [AVFile fileWithData:UIImageJPEGRepresentation(self.image, 0.01)];
     [file.metaData setDictionary:@{@"width":@(self.image.size.width),@"height":@(self.image.size.height)}];
     [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        sender.enabled = true;
         if (succeeded) {
             //save to table
             AVObject *object = [AVObject objectWithClassName:@"board"];

@@ -265,9 +265,10 @@
                 
                 [content setObject:[User currentUser].name forKey:@"fromUserName"];
                 [content setObject:resultFromJson forKey:@"content"];
-                [self.dataSource addObject:content];
+                [self.dataSource insertObject:content atIndex:0 ];
                 [self.tableView reloadData];
-                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.dataSource.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+                [self.tableView scrollsToTop];
+//                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.dataSource.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
                 [content saveInBackground];
             });
             

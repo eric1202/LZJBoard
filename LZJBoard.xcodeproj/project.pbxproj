@@ -17,6 +17,7 @@
 		CAAC68541D6C06060044327D /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAC684C1D6C06060044327D /* NSDate+DateTools.m */; };
 		CAAC68571D6C075D0044327D /* BaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAC68561D6C075D0044327D /* BaseCell.m */; };
 		CAAC685A1D6C2D370044327D /* BoardPeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAC68591D6C2D370044327D /* BoardPeakViewController.m */; };
+		CAAC685D1D6C43050044327D /* DrawingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAC685C1D6C43050044327D /* DrawingViewController.m */; };
 		CAE7DC771D6AA1FE00D4FC2E /* IATConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE7DC761D6AA1FE00D4FC2E /* IATConfig.m */; };
 		CAE7DC7A1D6AA6D500D4FC2E /* ISRDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE7DC791D6AA6D500D4FC2E /* ISRDataHelper.m */; };
 		CAE7DC7D1D6AD36900D4FC2E /* englishName.json in Resources */ = {isa = PBXBuildFile; fileRef = CAE7DC7C1D6AD36900D4FC2E /* englishName.json */; };
@@ -212,6 +213,8 @@
 		CAAC68561D6C075D0044327D /* BaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCell.m; sourceTree = "<group>"; };
 		CAAC68581D6C2D370044327D /* BoardPeakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardPeakViewController.h; sourceTree = "<group>"; };
 		CAAC68591D6C2D370044327D /* BoardPeakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardPeakViewController.m; sourceTree = "<group>"; };
+		CAAC685B1D6C43050044327D /* DrawingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingViewController.h; sourceTree = "<group>"; };
+		CAAC685C1D6C43050044327D /* DrawingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingViewController.m; sourceTree = "<group>"; };
 		CAE7DC751D6AA1FE00D4FC2E /* IATConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IATConfig.h; sourceTree = "<group>"; };
 		CAE7DC761D6AA1FE00D4FC2E /* IATConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IATConfig.m; sourceTree = "<group>"; };
 		CAE7DC781D6AA6D500D4FC2E /* ISRDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISRDataHelper.h; sourceTree = "<group>"; };
@@ -647,6 +650,8 @@
 			children = (
 				CAE7DC831D6AF60000D4FC2E /* PictureRecordCreateController.h */,
 				CAE7DC841D6AF60000D4FC2E /* PictureRecordCreateController.m */,
+				CAAC685B1D6C43050044327D /* DrawingViewController.h */,
+				CAAC685C1D6C43050044327D /* DrawingViewController.m */,
 			);
 			path = PictureRecord;
 			sourceTree = "<group>";
@@ -1551,6 +1556,7 @@
 				CAE7DE111D6B0C6F00D4FC2E /* JDStatusBarView.m in Sources */,
 				CAE7DCC31D6B094800D4FC2E /* AFHTTPSessionManager.m in Sources */,
 				CAFCDD001D6706CF0086CBF5 /* MessageBoardCell.m in Sources */,
+				CAAC685D1D6C43050044327D /* DrawingViewController.m in Sources */,
 				CAE7DD631D6B0ADB00D4FC2E /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				CAE7DD821D6B0ADB00D4FC2E /* NSDate+convenience.m in Sources */,
 				CAE7DE071D6B0BD500D4FC2E /* ObjcRuntime.m in Sources */,

@@ -19,6 +19,7 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import "DateTools.h"
 #import "BoardPeakViewController.h"
+#import "DrawingViewController.h"
 #define XFKEY @"57b6c6d8"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource,IFlyRecognizerViewDelegate,UIImagePickerControllerDelegate,UIViewControllerPreviewingDelegate>
@@ -50,12 +51,15 @@
     NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@",XFKEY];
     [IFlySpeechUtility createUtility:initString];
     
-    [self getNetworkData];
-    
     [self refreshContent];
     
     [self popPeak];
+    
+}
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self getNetworkData];
 }
 
 #pragma mark - network
@@ -168,6 +172,9 @@
     return _chatBtn;
 }
 
+- (IBAction)drawRecord:(id)sender {
+    [self.navigationController pushViewController:[DrawingViewController new] animated:YES];
+}
 
 /**
  *  记录图片
@@ -186,7 +193,7 @@
     PictureRecordCreateController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PictureRecordCreateController"];
     vc.image = info[@"UIImagePickerControllerOriginalImage"];
     [self.navigationController pushViewController:vc animated:YES];
-
+    
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker dismissViewControllerAnimated:YES completion:nil];
@@ -241,7 +248,7 @@
         [_iflyRecognizerView setParameter:instance.language forKey:[IFlySpeechConstant LANGUAGE]];
     }
     //设置是否返回标点符号
-//    [_iflyRecognizerView setParameter:instance.dot forKey:[IFlySpeechConstant ASR_PTT]];
+    //    [_iflyRecognizerView setParameter:instance.dot forKey:[IFlySpeechConstant ASR_PTT]];
     
     //    _uploader = [[IFlyDataUploader alloc]init];
     
@@ -274,7 +281,7 @@
                 [self.dataSource insertObject:content atIndex:0 ];
                 [self.tableView reloadData];
                 [self.tableView scrollsToTop];
-//                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.dataSource.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+                //                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.dataSource.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
                 [content saveInBackground];
             });
             
@@ -304,7 +311,7 @@
             BoardPeakViewController *displayVC = [BoardPeakViewController new];
             displayVC.board = _dataSource[indexPath.row];
             // peek预览窗口大小
-//            displayVC.preferredContentSize = CGSizeMake(300, 400);
+            //            displayVC.preferredContentSize = CGSizeMake(300, 400);
             
             // 进入peek前不被虚化的rect
             context.sourceRect = [self.view convertRect:[_tableView cellForRowAtIndexPath:indexPath].frame fromView:_tableView];

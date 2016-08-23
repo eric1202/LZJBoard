@@ -45,7 +45,7 @@
             NSLog(@"send OK");
             UIAlertController *alt = [UIAlertController alertControllerWithTitle:nil message:@"操作成功" preferredStyle:(UIAlertControllerStyleAlert)];
             [alt addAction:[UIAlertAction actionWithTitle:@"返回" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.navigationController popViewControllerAnimated:YES];
                 });
             }]];

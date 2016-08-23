@@ -38,6 +38,12 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="记录板" id="Abu-NZ-ACi">
+                        <barButtonItem key="leftBarButtonItem" title="手绘" id="2E8-4f-Ebb">
+                            <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="drawRecord:" destination="BYZ-38-t0r" id="xrV-7W-ggI"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="图片" id="98u-sC-d4A">
                             <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>

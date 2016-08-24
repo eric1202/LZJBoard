@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define WeakSelf __weak __typeof(&*self)weakSelf_SC = self;
 @interface ViewController : UIViewController
 
 

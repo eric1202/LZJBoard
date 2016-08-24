@@ -39,17 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = 60.0f;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    [self.tableView registerNib:[UINib nibWithNibName:@"MessageBoardCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MessageBoardCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"MessageBoardPicCellTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MessageBoardPicCellTableViewCell"];
-    self.dataSource = [NSMutableArray array];
-    
-    [self.view addSubview:self.chatBtn];
-    NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@",XFKEY];
-    [IFlySpeechUtility createUtility:initString];
+    [self initUI];
     
     [self refreshContent];
     
@@ -62,23 +52,40 @@
     [self getNetworkData];
 }
 
+- (void)initUI{
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.estimatedRowHeight = 60.0f;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    [self.tableView registerNib:[UINib nibWithNibName:@"MessageBoardCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MessageBoardCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"MessageBoardPicCellTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MessageBoardPicCellTableViewCell"];
+    
+    
+    self.dataSource = [NSMutableArray array];
+    
+    [self.view addSubview:self.chatBtn];
+    NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@",XFKEY];
+    [IFlySpeechUtility createUtility:initString];
+
+}
+
 #pragma mark - network
 - (void)getNetworkData{
+    WeakSelf
     AVQuery *aq = [[AVQuery alloc]initWithClassName:@"board"];
     [aq addDescendingOrder:@"createdAt"];
     
-    aq.skip = _dataSource.count;
-    aq.limit = aq.skip == 0 ?1000 :20;
+    aq.limit = 100;
     [aq findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error || objects.count == 0) {
             return ;
         }
-        
-        [self.dataSource addObjectsFromArray:objects];
+        [weakSelf_SC.dataSource removeAllObjects];
+        [weakSelf_SC.dataSource addObjectsFromArray:objects];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            [self.tableView reloadData];
+            [weakSelf_SC.tableView reloadData];
         });
     }];
 }
@@ -99,7 +106,7 @@
     // GCD的时间参数，一般是纳秒（1秒 == 10的9次方纳秒）
     // 何时开始执行第一个任务
     // dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC) 比当前时间晚3秒
-    dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
+    dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC));
     uint64_t interval = (uint64_t)(5.0 * NSEC_PER_SEC);
     dispatch_source_set_timer(self.timer, start, interval, 0);
     
@@ -291,7 +298,7 @@
     
 }
 
-#pragma marl - pop peak
+#pragma mark - pop peak
 - (void)popPeak{
     if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
         [self registerForPreviewingWithDelegate:self sourceView:self.view];

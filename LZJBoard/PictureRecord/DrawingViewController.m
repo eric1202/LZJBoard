@@ -9,6 +9,9 @@
 #import "DrawingViewController.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "User.h"
+#import <objc/runtime.h>
+#import "AFHTTPSessionManager.h"
+#import "AFURLResponseSerialization.h"
 @interface DrawingViewController ()
 
 @property (nonatomic,assign)CGFloat lineWidth;
@@ -21,6 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"手绘记录";
+    
+    [self phptest];
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.drawBoard = [[UIImageView alloc]initWithFrame:self.view.frame];
@@ -90,6 +95,21 @@
     UIGraphicsEndImageContext();
     
     _touchPoint = currentPoint;
+}
+
+- (void)phptest{
+    AFHTTPSessionManager *pm = [[AFHTTPSessionManager alloc]init];
+    AFHTTPResponseSerializer *rs = [AFHTTPResponseSerializer serializer];
+    
+    [pm setResponseSerializer:rs];
+    
+    [pm POST:@"http://www.lzj.party/test/login.php" parameters:@{@"userName":@"lzj",@"password":@(111111)} success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"PHP test success: %@", [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding] );
+        
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"PHP test error: %@",error);
+    }];
 }
 
 @end

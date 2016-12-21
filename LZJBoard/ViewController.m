@@ -41,7 +41,7 @@
     
     [self initUI];
     
-    [self refreshContent];
+//    [self refreshContent];// 不需要实时刷新的
     
     [self popPeak];
     
@@ -278,7 +278,9 @@
         }
         
         NSString *resultFromJson = [ISRDataHelper stringFromJson:resultString];
-        if (resultFromJson) {
+        
+        //remove 句号 逗号 感叹号 再第一个位置的
+        if (resultFromJson && resultFromJson.length>1) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 AVObject *content = [AVObject objectWithClassName:@"board"];

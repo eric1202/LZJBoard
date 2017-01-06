@@ -12,6 +12,9 @@
 #import "AppDelegate.h"
 #import <QMUIKit/QMUIKit.h>
 #import <AVOSCloud/AVOSCloud.h>
+//#import "QMUIConfigurationTemplate.h"
+
+
 @interface AppDelegate ()
 
 @end
@@ -20,13 +23,14 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+
     [AVOSCloud setApplicationId:leanCloudAPPID clientKey:leanCloudAPPKEY];
-    
+
     if ([User currentUser].name == nil) {
         [[User currentUser] getRandomNameWithSex:SexMale];
     }
 
+//    [QMUIConfigurationTemplate setupConfigurationTemplate];
 //    [QMUIConfigurationManager renderGlobalAppearances];
 
     return YES;

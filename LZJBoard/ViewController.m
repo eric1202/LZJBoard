@@ -67,7 +67,11 @@
     self.tableView.estimatedRowHeight = 60.0f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 
-//    self.tableView.shouldHideSearchBarWhenEmptyViewShowing = YES;
+    QMUITextView *tv = [[QMUITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 300)];
+    tv.placeholder = @"fhgkldhfgjdklfhgjkldfsjkgh";
+    [self.view addSubview:tv];
+    tv.backgroundColor = [UIColor yellowColor];
+    
 
     [self.tableView registerNib:[UINib nibWithNibName:@"MessageBoardCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MessageBoardCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"MessageBoardPicCellTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MessageBoardPicCellTableViewCell"];

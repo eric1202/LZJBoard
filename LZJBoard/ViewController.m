@@ -20,10 +20,12 @@
 #import "DateTools.h"
 #import "BoardPeakViewController.h"
 #import "DrawingViewController.h"
+#import <QMUIKit/QMUIKit.h>
+
 #define XFKEY @"57b6c6d8"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,IFlyRecognizerViewDelegate,UIImagePickerControllerDelegate,UIViewControllerPreviewingDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@interface ViewController ()<QMUITableViewDelegate,QMUITableViewDataSource,IFlyRecognizerViewDelegate,UIImagePickerControllerDelegate,UIViewControllerPreviewingDelegate>
+@property (weak, nonatomic) IBOutlet QMUITableView *tableView;
 @property (strong, nonatomic) UIButton *chatBtn;
 @property (strong, nonatomic) UIButton *pictureBtn;
 @property (nonatomic, strong) dispatch_source_t timer;
@@ -32,6 +34,8 @@
 @property (nonatomic, strong) IFlyDataUploader *uploader;
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
+
+@property (strong, nonatomic) QMUIButton *qmBtn;
 @end
 
 @implementation ViewController
@@ -44,7 +48,12 @@
 //    [self refreshContent];// 不需要实时刷新的
     
     [self popPeak];
-    
+
+
+    _qmBtn = [[QMUIButton alloc]init];
+    _qmBtn.frame = CGRectMake(10, 10, 30, 30);
+
+    [self.view addSubview:_qmBtn];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -57,6 +66,9 @@
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 60.0f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+
+//    self.tableView.shouldHideSearchBarWhenEmptyViewShowing = YES;
+
     [self.tableView registerNib:[UINib nibWithNibName:@"MessageBoardCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MessageBoardCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"MessageBoardPicCellTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MessageBoardPicCellTableViewCell"];
     

@@ -10,6 +10,7 @@
 
 #import "User.h"
 #import "AppDelegate.h"
+#import <QMUIKit/QMUIKit.h>
 #import <AVOSCloud/AVOSCloud.h>
 @interface AppDelegate ()
 
@@ -25,7 +26,8 @@
     if ([User currentUser].name == nil) {
         [[User currentUser] getRandomNameWithSex:SexMale];
     }
-    
+
+//    [QMUIConfigurationManager renderGlobalAppearances];
 
     return YES;
 }

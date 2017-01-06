@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6BB06DA41E1F534400E5D0E9 /* QMUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BB06DA31E1F52EA00E5D0E9 /* QMUIKit.framework */; };
 		CAAC684D1D6C06060044327D /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAAC683D1D6C06060044327D /* DateTools.bundle */; };
 		CAAC684E1D6C06060044327D /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAC68401D6C06060044327D /* DTConstants.m */; };
 		CAAC684F1D6C06060044327D /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAC68421D6C06060044327D /* DTError.m */; };
@@ -176,6 +177,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6BB06DA01E1F52EA00E5D0E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6BB06D9B1E1F52EA00E5D0E9 /* qmui.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 16E46D4A1B00D8C2002B7DB8;
+			remoteInfo = QMUI;
+		};
+		6BB06DA21E1F52EA00E5D0E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6BB06D9B1E1F52EA00E5D0E9 /* qmui.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FE0AFAD11D82B9D8000D21D9;
+			remoteInfo = QMUIKit;
+		};
 		CAFCDCCD1D6703A80086CBF5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CAFCDCAB1D6703A80086CBF5 /* Project object */;
@@ -193,6 +208,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6BB06D9B1E1F52EA00E5D0E9 /* qmui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = qmui.xcodeproj; path = "LZJBoard/Util/QMUI_iOS-master/qmui.xcodeproj"; sourceTree = "<group>"; };
 		CAAC683D1D6C06060044327D /* DateTools.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DateTools.bundle; sourceTree = "<group>"; };
 		CAAC683E1D6C06060044327D /* DateTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTools.h; sourceTree = "<group>"; };
 		CAAC683F1D6C06060044327D /* DTConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTConstants.h; sourceTree = "<group>"; };
@@ -532,6 +548,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BB06DA41E1F534400E5D0E9 /* QMUIKit.framework in Frameworks */,
 				CAFCDD201D670A670086CBF5 /* libicucore.tbd in Frameworks */,
 				CAFCDD181D6709C80086CBF5 /* libsqlite3.tbd in Frameworks */,
 				CAFCDD161D6709B80086CBF5 /* libc++.tbd in Frameworks */,
@@ -568,6 +585,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6BB06D9C1E1F52EA00E5D0E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6BB06DA11E1F52EA00E5D0E9 /* libQMUI.a */,
+				6BB06DA31E1F52EA00E5D0E9 /* QMUIKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CAAC683B1D6C05530044327D /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -609,6 +635,7 @@
 		CAE7DC741D6AA1E500D4FC2E /* framework */ = {
 			isa = PBXGroup;
 			children = (
+				6BB06D9B1E1F52EA00E5D0E9 /* qmui.xcodeproj */,
 				CAFCDCF41D6704B60086CBF5 /* LeanCloudFrameworks */,
 				CAFCDD1F1D670A670086CBF5 /* libicucore.tbd */,
 				CAFCDD1D1D670A5E0086CBF5 /* libiconv.tbd */,
@@ -1381,6 +1408,12 @@
 			mainGroup = CAFCDCAA1D6703A70086CBF5;
 			productRefGroup = CAFCDCB41D6703A80086CBF5 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 6BB06D9C1E1F52EA00E5D0E9 /* Products */;
+					ProjectRef = 6BB06D9B1E1F52EA00E5D0E9 /* qmui.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				CAFCDCB21D6703A80086CBF5 /* LZJBoard */,
@@ -1389,6 +1422,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		6BB06DA11E1F52EA00E5D0E9 /* libQMUI.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libQMUI.a;
+			remoteRef = 6BB06DA01E1F52EA00E5D0E9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6BB06DA31E1F52EA00E5D0E9 /* QMUIKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = QMUIKit.framework;
+			remoteRef = 6BB06DA21E1F52EA00E5D0E9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CAFCDCB11D6703A80086CBF5 /* Resources */ = {

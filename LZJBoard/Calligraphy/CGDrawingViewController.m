@@ -59,10 +59,18 @@
 
     [self renderUpper];
     [self renderMiddle];
+
+    UIBarButtonItem *barItem = [[UIBarButtonItem alloc]initWithTitle:@"清除" style:(UIBarButtonItemStyleDone) target:self action:@selector(clean:)];
+    self.navigationItem.rightBarButtonItem = barItem;
+
 }
 
-- (void)teachingFlag:(BOOL)is{
+- (void)teachingFlag:(BOOL)isStart{
     
+}
+
+- (void)clean:(id)sender{
+    self.drawBoard.image = nil;
 }
 
 - (void)renderUpper{

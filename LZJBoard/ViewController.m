@@ -21,6 +21,7 @@
 #import "BoardPeakViewController.h"
 #import "DrawingViewController.h"
 #import <QMUIKit/QMUIKit.h>
+#import <SVGKit/SVGKit.h>
 
 #define XFKEY @"57b6c6d8"
 
@@ -46,6 +47,18 @@
     [self initUI];
     
 //    [self refreshContent];// 不需要实时刷新的
+    NSString *svgName = @"sbs";
+
+    SVGKImage *svgImage = [SVGKImage imageNamed:svgName];
+
+    SVGKLayeredImageView *svgView = [[SVGKLayeredImageView alloc] initWithSVGKImage:svgImage];
+    svgView.contentMode = UIViewContentModeScaleAspectFit;
+
+    svgView.backgroundColor = [UIColor clearColor];
+    svgView.frame = CGRectMake(100, 140, 200, 200);
+
+    [self.view addSubview:svgView];
+
     
     [self popPeak];
 
@@ -66,11 +79,6 @@
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 60.0f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-
-    QMUITextView *tv = [[QMUITextView alloc]initWithFrame:CGRectMake(0, 0, 200, 300)];
-    tv.placeholder = @"fhgkldhfgjdklfhgjkldfsjkgh";
-    [self.view addSubview:tv];
-    tv.backgroundColor = [UIColor yellowColor];
     
 
     [self.tableView registerNib:[UINib nibWithNibName:@"MessageBoardCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MessageBoardCell"];

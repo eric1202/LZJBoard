@@ -7,7 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6BB06DA41E1F534400E5D0E9 /* QMUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BB06DA31E1F52EA00E5D0E9 /* QMUIKit.framework */; };
+		6BDE43EC1FF48A8A0015177B /* QMUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BB06DA31E1F52EA00E5D0E9 /* QMUIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		6BDE43F01FF48C170015177B /* CalligraphyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDE43EF1FF48C170015177B /* CalligraphyViewController.m */; };
+		6BDE43F31FF48F510015177B /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDE43F11FF48F510015177B /* star.png */; };
+		6BDE43F41FF48F510015177B /* starfull.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDE43F21FF48F510015177B /* starfull.png */; };
+		6BDE43F71FF491C50015177B /* CGDrawingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDE43F61FF491C50015177B /* CGDrawingViewController.m */; };
+		6BDE440A1FF4A1FF0015177B /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDE44041FF4A1FE0015177B /* 2.png */; };
+		6BDE440B1FF4A1FF0015177B /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDE44051FF4A1FE0015177B /* 0.png */; };
+		6BDE440C1FF4A1FF0015177B /* 2222.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDE44061FF4A1FE0015177B /* 2222.png */; };
+		6BDE440D1FF4A1FF0015177B /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDE44071FF4A1FE0015177B /* 1.png */; };
+		6BDE440E1FF4A1FF0015177B /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDE44081FF4A1FE0015177B /* 3.png */; };
+		6BDE440F1FF4A1FF0015177B /* 3333.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDE44091FF4A1FF0015177B /* 3333.png */; };
 		CAAC684D1D6C06060044327D /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAAC683D1D6C06060044327D /* DateTools.bundle */; };
 		CAAC684E1D6C06060044327D /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAC68401D6C06060044327D /* DTConstants.m */; };
 		CAAC684F1D6C06060044327D /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAC68421D6C06060044327D /* DTError.m */; };
@@ -209,6 +219,18 @@
 
 /* Begin PBXFileReference section */
 		6BB06D9B1E1F52EA00E5D0E9 /* qmui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = qmui.xcodeproj; path = "LZJBoard/Util/QMUI_iOS-master/qmui.xcodeproj"; sourceTree = "<group>"; };
+		6BDE43EE1FF48C170015177B /* CalligraphyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalligraphyViewController.h; sourceTree = "<group>"; };
+		6BDE43EF1FF48C170015177B /* CalligraphyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalligraphyViewController.m; sourceTree = "<group>"; };
+		6BDE43F11FF48F510015177B /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		6BDE43F21FF48F510015177B /* starfull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starfull.png; sourceTree = "<group>"; };
+		6BDE43F51FF491C50015177B /* CGDrawingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGDrawingViewController.h; sourceTree = "<group>"; };
+		6BDE43F61FF491C50015177B /* CGDrawingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGDrawingViewController.m; sourceTree = "<group>"; };
+		6BDE44041FF4A1FE0015177B /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		6BDE44051FF4A1FE0015177B /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
+		6BDE44061FF4A1FE0015177B /* 2222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2222.png; sourceTree = "<group>"; };
+		6BDE44071FF4A1FE0015177B /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		6BDE44081FF4A1FE0015177B /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		6BDE44091FF4A1FF0015177B /* 3333.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3333.png; sourceTree = "<group>"; };
 		CAAC683D1D6C06060044327D /* DateTools.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DateTools.bundle; sourceTree = "<group>"; };
 		CAAC683E1D6C06060044327D /* DateTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTools.h; sourceTree = "<group>"; };
 		CAAC683F1D6C06060044327D /* DTConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTConstants.h; sourceTree = "<group>"; };
@@ -548,7 +570,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BB06DA41E1F534400E5D0E9 /* QMUIKit.framework in Frameworks */,
+				6BDE43EC1FF48A8A0015177B /* QMUIKit.framework in Frameworks */,
 				CAFCDD201D670A670086CBF5 /* libicucore.tbd in Frameworks */,
 				CAFCDD181D6709C80086CBF5 /* libsqlite3.tbd in Frameworks */,
 				CAFCDD161D6709B80086CBF5 /* libc++.tbd in Frameworks */,
@@ -592,6 +614,24 @@
 				6BB06DA31E1F52EA00E5D0E9 /* QMUIKit.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6BDE43EB1FF48A8A0015177B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6BDE43ED1FF48BF90015177B /* Calligraphy */ = {
+			isa = PBXGroup;
+			children = (
+				6BDE43EE1FF48C170015177B /* CalligraphyViewController.h */,
+				6BDE43EF1FF48C170015177B /* CalligraphyViewController.m */,
+				6BDE43F51FF491C50015177B /* CGDrawingViewController.h */,
+				6BDE43F61FF491C50015177B /* CGDrawingViewController.m */,
+			);
+			path = Calligraphy;
 			sourceTree = "<group>";
 		};
 		CAAC683B1D6C05530044327D /* Base */ = {
@@ -658,6 +698,14 @@
 		CAE7DC7B1D6AD36900D4FC2E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				6BDE44051FF4A1FE0015177B /* 0.png */,
+				6BDE44071FF4A1FE0015177B /* 1.png */,
+				6BDE44041FF4A1FE0015177B /* 2.png */,
+				6BDE44081FF4A1FE0015177B /* 3.png */,
+				6BDE44061FF4A1FE0015177B /* 2222.png */,
+				6BDE44091FF4A1FF0015177B /* 3333.png */,
+				6BDE43F11FF48F510015177B /* star.png */,
+				6BDE43F21FF48F510015177B /* starfull.png */,
 				CAE7DC7C1D6AD36900D4FC2E /* englishName.json */,
 			);
 			path = Resource;
@@ -1167,6 +1215,7 @@
 				CAFCDCCF1D6703A80086CBF5 /* LZJBoardTests */,
 				CAFCDCDA1D6703A80086CBF5 /* LZJBoardUITests */,
 				CAFCDCB41D6703A80086CBF5 /* Products */,
+				6BDE43EB1FF48A8A0015177B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1184,8 +1233,8 @@
 			isa = PBXGroup;
 			children = (
 				CAE7DC7E1D6AD39600D4FC2E /* Modal */,
+				6BDE43ED1FF48BF90015177B /* Calligraphy */,
 				CAE7DC821D6AF48700D4FC2E /* PictureRecord */,
-				CAFCDCE91D6704720086CBF5 /* Chat */,
 				CAFCDCEA1D6704720086CBF5 /* HomePage */,
 				CAFCDCEB1D6704720086CBF5 /* Util */,
 				CAFCDCFB1D67069A0086CBF5 /* View */,
@@ -1220,13 +1269,6 @@
 				CAFCDCDD1D6703A80086CBF5 /* Info.plist */,
 			);
 			path = LZJBoardUITests;
-			sourceTree = "<group>";
-		};
-		CAFCDCE91D6704720086CBF5 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Chat;
 			sourceTree = "<group>";
 		};
 		CAFCDCEA1D6704720086CBF5 /* HomePage */ = {
@@ -1445,17 +1487,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BDE440B1FF4A1FF0015177B /* 0.png in Resources */,
 				CAFCDD121D6709890086CBF5 /* AVOSCloud.framework in Resources */,
 				CAE7DD7A1D6B0ADB00D4FC2E /* IQKeyboardManager.bundle in Resources */,
+				6BDE440F1FF4A1FF0015177B /* 3333.png in Resources */,
 				CAE7DD681D6B0ADB00D4FC2E /* FontAwesome.ttf in Resources */,
 				CAFCDD131D6709890086CBF5 /* AVOSCloudCrashReporting.framework in Resources */,
 				CAE7DC8A1D6B031200D4FC2E /* MessageBoardPicCellTableViewCell.xib in Resources */,
 				CAE7DD7D1D6B0ADB00D4FC2E /* MBProgressHUD.bundle in Resources */,
+				6BDE43F41FF48F510015177B /* starfull.png in Resources */,
+				6BDE440D1FF4A1FF0015177B /* 1.png in Resources */,
 				CAAC684D1D6C06060044327D /* DateTools.bundle in Resources */,
+				6BDE440C1FF4A1FF0015177B /* 2222.png in Resources */,
 				CAFCDD141D6709890086CBF5 /* AVOSCloudIM.framework in Resources */,
 				CAE7DC7D1D6AD36900D4FC2E /* englishName.json in Resources */,
+				6BDE440A1FF4A1FF0015177B /* 2.png in Resources */,
 				CAFCDCC61D6703A80086CBF5 /* LaunchScreen.storyboard in Resources */,
+				6BDE440E1FF4A1FF0015177B /* 3.png in Resources */,
 				CAFCDCC31D6703A80086CBF5 /* Assets.xcassets in Resources */,
+				6BDE43F31FF48F510015177B /* star.png in Resources */,
 				CAFCDD011D6706CF0086CBF5 /* MessageBoardCell.xib in Resources */,
 				CAFCDCC11D6703A80086CBF5 /* Main.storyboard in Resources */,
 			);
@@ -1535,6 +1585,7 @@
 				CAE7DCC21D6B094800D4FC2E /* AFHTTPRequestOperationManager.m in Sources */,
 				CAE7DD951D6B0ADB00D4FC2E /* UIImageView+Common.m in Sources */,
 				CAAC68501D6C06060044327D /* DTTimePeriod.m in Sources */,
+				6BDE43F01FF48C170015177B /* CalligraphyViewController.m in Sources */,
 				CAE7DCD81D6B094800D4FC2E /* UIImageView+WebCache.m in Sources */,
 				CAE7DCD31D6B094800D4FC2E /* UIButton+WebCache.m in Sources */,
 				CAE7DD7C1D6B0ADB00D4FC2E /* MBProgressHUD+Add.m in Sources */,
@@ -1576,6 +1627,7 @@
 				CAE7DCD21D6B094800D4FC2E /* SDWebImagePrefetcher.m in Sources */,
 				CAE7DCD61D6B094800D4FC2E /* UIImage+WebP.m in Sources */,
 				CAE7DD751D6B0ADB00D4FC2E /* IQTextView.m in Sources */,
+				6BDE43F71FF491C50015177B /* CGDrawingViewController.m in Sources */,
 				CAE7DDD21D6B0B6500D4FC2E /* POPAnimation.mm in Sources */,
 				CAE7DCD11D6B094800D4FC2E /* SDWebImageManager.m in Sources */,
 				CAE7DE001D6B0B7900D4FC2E /* MASViewConstraint.m in Sources */,
